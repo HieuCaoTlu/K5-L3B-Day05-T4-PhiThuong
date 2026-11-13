@@ -141,46 +141,48 @@
 
 ## §4. Mức tự chủ  (chặng 4)
 
-Bộ tool: 5 tool của track + `tra_cuu_don_hang` (nhóm thêm ở §2). AI chỉ tra cứu, xin bằng chứng và chuyển người; **không** quyết hoàn hay từ chối (khớp §3).
+Bộ tool: 5 tool của track + `tra_cuu_don_hang` (nhóm thêm ở §2). AI tra cứu, xin bằng chứng, chuyển người và **soạn nháp** lệnh tiền; **không** bao giờ tự chạy lệnh hoàn hay từ chối (khớp §3: "Mình chưa quyết hoàn tiền hay từ chối").
+
+**Giả định dựng:** track không có tool chuyển bộ phận chuyên trách, nên ca nghi hàng giả (#6) đi qua `chuyen_truong_nhom` và **trưởng nhóm chuyển tiếp lên bộ phận chuyên trách**.
 
 | Tool | Mức | Lý do theo cost-of-error | Phương án đã loại |
 |---|---|---|---|
-| `tra_cuu_don_hang` | **tự làm** | Chỉ đọc; sai thì người dùng thấy qua thẻ "Dựa vào". Không ai mất tiền, chờ duyệt là vô ích. | — |
-| `yeu_cau_bang_chung` | **tự làm**, kèm luật | Tin đã tới nhưng chỉ là mẫu xin bằng chứng: sai thì tốn công gửi thêm ảnh. Chờ duyệt đắt hơn vì hạn trả ngắn (#7 còn ~2 ngày). **Luật:** chỉ gửi khi đã rõ đơn (#2); chỉ dùng mẫu cố định; không xin lại thứ đã có (#7). | *Cần duyệt*: mẫu cố định, người duyệt không có gì để sửa, chỉ thêm độ trễ. |
-| `chuyen_truong_nhom` | **tự làm** + hoàn tác | Đảo được (trưởng nhóm "trả hồ sơ về trợ lý"). Không chuyển khi cần thì một bên mất tiền. **Tự chuyển khi:** mô tả sửa sau ngày đặt (#3), bằng chứng mâu thuẫn (#7), nghi hàng giả (#6). Không chuyển vì lời doạ (#4). | *Cần duyệt*: thêm tầng chờ cho đúng việc gọi người. |
-| `soan_hoan_tien` | **cần người duyệt** | Hoàn sai thì người bán mất tiền và hàng, "Khó" đảo (#1, #3, #4). **Người duyệt:** người bán bấm đồng ý (#10), hoặc trưởng nhóm. Họ thấy số tiền, căn cứ hai bên, dòng "không hoàn tác được". **Quá 48 giờ** người bán không phản hồi: hồ sơ ở trưởng nhóm, không tự hoàn. | *Tự làm khi căn cứ mạnh*: #1 cho thấy "căn cứ mạnh" có thể chỉ là lời kể một phía. |
-| `tu_choi_khieu_nai` | **cấm với AI**, chỉ trưởng nhóm | Từ chối sai thì người mua mất tiền, giữ hàng sai, có thể lỡ hạn (#7). Người mua không tự từ chối mình, nên bước xác nhận phía họ không chặn được. "Chưa đủ căn cứ" không được nối vào tool này. | *Cần duyệt*: thực chất giống nhau, nhưng "cấm với AI" làm rõ phía người mua không có nút nào dẫn tới từ chối. |
-| `phat_shop` | **cấm** | Ảnh hưởng cả shop, "Khó" đảo, ngoài thẩm quyền khiếu nại (§1). Nghi hàng giả thì chuyển bộ phận chuyên trách. | *Trưởng nhóm khiếu nại duyệt*: vẫn sai người. |
+| `tra_cuu_don_hang` | **tự làm** | Chỉ đọc; sai thì người dùng thấy qua thẻ "Dựa vào". Không ai mất tiền. | *Cần duyệt*: chờ người duyệt một lần đọc là chờ vô ích, mà mọi câu trả lời đều cần tra đơn trước. |
+| `yeu_cau_bang_chung` | **tự làm**, kèm luật | Tin đã tới nhưng chỉ là mẫu xin bằng chứng: sai thì tốn công gửi thêm ảnh. Chờ duyệt đắt hơn vì hạn trả ngắn (#7 còn ~2 ngày). **Luật:** chỉ gửi khi đã rõ đơn (#2); chỉ dùng mẫu cố định; không xin lại thứ đã có. Ở #3 AI gửi cho shop (hạn 15/11 20:00); ở #7 shop đã phản hồi nên AI **không** gọi tool này. | *Cần duyệt*: mẫu cố định, người duyệt không có gì để sửa, chỉ thêm độ trễ. |
+| `chuyen_truong_nhom` | **tự làm** + hoàn tác | Đảo được (trưởng nhóm trả hồ sơ về). Không chuyển khi cần thì một bên mất tiền. **Tự chuyển khi:** mô tả sửa sau ngày đặt (#3), bằng chứng mâu thuẫn (#7), nghi hàng giả (#6). Không chuyển vì lời doạ (#4). Ở #7, shop được **hệ thống báo** kèm ảnh người mua khi hồ sơ được chuyển (không phải tool của AI). | *Cần duyệt*: thêm tầng chờ cho đúng việc gọi người. |
+| `soan_hoan_tien` | **cần người duyệt** | Hoàn sai thì shop mất tiền và hàng, "Khó" đảo (#1, #3, #4). AI chỉ soạn **nháp trung lập**: số tiền, đơn, căn cứ của **cả hai bên**, không ghi kết luận. **Người duyệt:** shop (bấm "Đồng ý hoàn", như #10) hoặc trưởng nhóm. Họ thấy nháp + dòng "không hoàn tác được". **Không ai duyệt kịp:** lệnh không chạy, hồ sơ ở lại trưởng nhóm. | *Tự làm khi căn cứ mạnh*: #1 cho thấy "căn cứ mạnh" có thể chỉ là lời kể một phía. *Cấm*: shop đã đồng ý ở #10 mà vẫn phải có người gõ tay lệnh hoàn là chậm vô ích. |
+| `tu_choi_khieu_nai` | **cần người duyệt** — chỉ trưởng nhóm | Từ chối sai thì người mua mất tiền, giữ hàng sai, có thể lỡ hạn (#7). Cùng mức với `soan_hoan_tien` để AI **trung lập**: hai hướng sai đều "Khó" (§2 #3), nên AI không có đường tắt cho hướng nào. Chỉ trưởng nhóm duyệt, vì người mua không bao giờ tự từ chối mình. "Chưa đủ căn cứ" của AI **không** tạo lệnh này. | *Cấm với AI*: không làm hai tool tiền khác mức nhau; nếu `soan_hoan_tien` có nháp còn từ chối thì không, AI sẽ nghiêng về người mua. |
+| `phat_shop` | **cấm** | Ảnh hưởng cả shop, "Khó" đảo, ngoài thẩm quyền khiếu nại (§1). Nghi hàng giả → chuyển trưởng nhóm → bộ phận chuyên trách. | *Trưởng nhóm khiếu nại duyệt*: vẫn sai người. |
 
 ### Tool khó xếp nhất: `soan_hoan_tien`
 
 | Phương án | Ai chọn | Cái giá nếu chọn |
 |---|---|---|
-| A. Tự làm khi người bán đồng ý **hoặc** căn cứ mạnh | [tên] | #1: AI coi lời kể "shop nhận nhầm" là căn cứ, hoàn khi người bán chưa phản hồi; #4: lời doạ bị đọc thành khẩn cấp. Người bán mất tiền, không đảo. |
-| B. Chỉ trưởng nhóm được hoàn | [tên] | #10: người bán đã đồng ý mà người mua vẫn chờ trưởng nhóm — chờ vô ích. |
-| C. Cần duyệt bởi **người bán hoặc trưởng nhóm** | [tên] | #3: người bán có thể ngâm 48 giờ. Giảm vì trưởng nhóm đã nhận hồ sơ song song. |
+| A. Tự làm khi shop đồng ý **hoặc** căn cứ mạnh | [tên] | #1: AI coi lời kể "shop nhận nhầm" là căn cứ, hoàn khi shop chưa phản hồi; #4: lời doạ bị đọc thành khẩn cấp. Shop mất tiền, không đảo. |
+| B. Cấm với AI, người duyệt tự tạo lệnh | [tên] | #10: shop đã đồng ý mà vẫn phải có người gõ tay số tiền và lệnh hoàn — chậm, dễ gõ sai. |
+| C. Cần người duyệt: AI soạn nháp trung lập, shop hoặc trưởng nhóm bấm | [tên] | #3: người mua chờ tới khi shop phản hồi hoặc hết 48 giờ (15/11 20:00). Chấp nhận vì vẫn trước hạn trả 17/11. |
 
-**Nhóm chốt C:** người bán đồng ý thì nhanh (#10); hai bên không thống nhất thì trưởng nhóm quyết (#3, #7). AI không bao giờ là người bấm. Nhóm chọn chịu chậm hơn chứ không chịu tiền đi sai.
+**Nhóm chốt C**, và cho `tu_choi_khieu_nai` cùng mức để AI trung lập. AI không bao giờ là người bấm. Nhóm chọn chịu chậm hơn chứ không chịu tiền đi sai.
 
 ### Thử mức đã đặt
 
 | Kịch bản | Cái sai bị chặn? | Còn làm khi lẽ ra phải hỏi? | Người bình thường chờ vô ích? |
 |---|---|---|---|
-| **#3** nồi chiên | **Có** — AI không có quyền hoàn hay từ chối; bản lúc đặt là chuẩn. | AI tự xin phản hồi người bán và tự chuyển trưởng nhóm — chấp nhận vì đơn đã rõ, chuyển thì hoàn tác được. | Chờ tới 48 giờ, nhưng là chờ có ích: dữ liệu mơ hồ. |
-| **#7** áo, ảnh mâu thuẫn | **Có** — "chưa đủ căn cứ" không thể thành đóng khiếu nại. | Không; AI không xin thêm ảnh. | Chờ trưởng nhóm; hạn vẫn chạy nên AI hướng dẫn tự gửi yêu cầu trước 15/11. |
-| **#10** bình thường | Không có cái sai đắt; người bán đồng ý chính là bước duyệt. | Không. | **Không** — gửi ngay, không qua trưởng nhóm. |
+| **#3** nồi chiên | **Có** — nháp chỉ chạy khi có người duyệt, và trưởng nhóm chỉ duyệt sau khi shop phản hồi hoặc hết 15/11 20:00. Bản lúc đặt là chuẩn. | AI tự xin phản hồi shop và tự chuyển trưởng nhóm — chấp nhận vì đơn đã rõ, chuyển thì hoàn tác được. | Chờ tới 48 giờ, nhưng là chờ có ích: dữ liệu mơ hồ, shop phải được nghe. |
+| **#7** áo, ảnh mâu thuẫn | **Có** — "chưa đủ căn cứ" không tạo lệnh từ chối; chỉ trưởng nhóm duyệt. | Không; AI không xin thêm ảnh. | Chờ trưởng nhóm (shop đã phản hồi nên không phải chờ 48 giờ); hạn vẫn chạy nên AI hướng dẫn tự gửi yêu cầu trước 15/11 23:59. |
+| **#10** bình thường | Không có cái sai đắt; shop bấm đồng ý chính là bước duyệt. | Không. | **Không** — gửi ngay, không qua trưởng nhóm. |
 
 ### Luật thêm
 
 1. Mô tả lúc đặt là chuẩn; `tra_cuu_don_hang` luôn trả cả hai phiên bản và ngày sửa (#3).
-2. Bằng chứng mâu thuẫn: AI không bao giờ tự đóng, tự chuyển trưởng nhóm (#7).
-3. Lời doạ không phải căn cứ, không đổi ưu tiên (#4).
-4. Chỉ xin bằng chứng sau khi rõ đơn (#2).
-5. Không xuất số điện thoại, địa chỉ (#5).
+2. **Không quyết tiền trước khi shop được nghe:** trưởng nhóm chỉ duyệt sau khi shop phản hồi hoặc hết 48 giờ (#3).
+3. Bằng chứng mâu thuẫn: AI không tạo lệnh tiền, tự chuyển trưởng nhóm (#7).
+4. Lời doạ không phải căn cứ, không đổi ưu tiên (#4).
+5. Chỉ xin bằng chứng sau khi rõ đơn (#2). Không xuất số điện thoại, địa chỉ (#5).
 
 ### Mức tự chủ đã đổi lời hứa
 
-Từ *"Trợ lý AI xử lý khiếu nại cho bạn"* thành **"Trợ lý tra đơn, chỉ bạn bước tiếp và hạn còn bao lâu, rồi chuyển đúng người; người bán hoặc trưởng nhóm quyết chuyện tiền."** Vì vậy cả hai câu AI ở §3 đều kết thúc bằng "Mình chưa quyết hoàn tiền hay từ chối". Với người bán: **"Không ai hoàn tiền đơn của bạn khi bạn chưa được nghe."**
+Từ *"Trợ lý AI xử lý khiếu nại cho bạn"* thành **"Trợ lý tra đơn, chỉ bạn bước tiếp và hạn còn bao lâu, rồi chuyển đúng người; shop hoặc trưởng nhóm quyết chuyện tiền."** Vì vậy cả hai câu AI ở §3 đều kết thúc bằng "Mình chưa quyết hoàn tiền hay từ chối". Với shop: **"Không ai hoàn tiền đơn của bạn khi bạn chưa được nghe."**
 
 ## §5. Prototype  (chặng 5)
 - Link hoặc file · công cụ · phần nào mock · có lời gọi AI thật không.
