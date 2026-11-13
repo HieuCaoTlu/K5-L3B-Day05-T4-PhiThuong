@@ -152,11 +152,11 @@ Bộ tool: 5 tool của track + `tra_cuu_don_hang` (nhóm thêm ở §2). AI ch�
 
 ### Tool khó xếp nhất: `soan_hoan_tien`
 
-| Phương án | Cái giá nếu chọn |
-|---|---|
-| A. Tự làm khi người bán đồng ý **hoặc** căn cứ mạnh | #1: AI coi lời kể "shop nhận nhầm" là căn cứ, hoàn khi người bán chưa phản hồi; #4: lời doạ bị đọc thành khẩn cấp. Người bán mất tiền, không đảo. |
-| B. Chỉ trưởng nhóm được hoàn | #10: người bán đã đồng ý mà người mua vẫn chờ trưởng nhóm — chờ vô ích. |
-| C. Cần duyệt bởi **người bán hoặc trưởng nhóm** | #3: người bán có thể ngâm 48 giờ. Giảm vì trưởng nhóm đã nhận hồ sơ song song. |
+| Phương án | Ai chọn | Cái giá nếu chọn |
+|---|---|---|
+| A. Tự làm khi người bán đồng ý **hoặc** căn cứ mạnh | [tên] | #1: AI coi lời kể "shop nhận nhầm" là căn cứ, hoàn khi người bán chưa phản hồi; #4: lời doạ bị đọc thành khẩn cấp. Người bán mất tiền, không đảo. |
+| B. Chỉ trưởng nhóm được hoàn | [tên] | #10: người bán đã đồng ý mà người mua vẫn chờ trưởng nhóm — chờ vô ích. |
+| C. Cần duyệt bởi **người bán hoặc trưởng nhóm** | [tên] | #3: người bán có thể ngâm 48 giờ. Giảm vì trưởng nhóm đã nhận hồ sơ song song. |
 
 **Nhóm chốt C:** người bán đồng ý thì nhanh (#10); hai bên không thống nhất thì trưởng nhóm quyết (#3, #7). AI không bao giờ là người bấm. Nhóm chọn chịu chậm hơn chứ không chịu tiền đi sai.
 
