@@ -1,3 +1,5 @@
+**Prototype (bấm được):** https://claude.ai/artifact/HQrwkKMcZj935SxnYWLA6v
+
 # Bài nộp LAB5 — T4 Trò chuyện với Shopee · Nhóm PhiThuong
 
 **Lớp:** L3B · **Phòng:** H104 · **Track:** T4 - Trò chuyện với Shopee
