@@ -130,7 +130,7 @@
   - PAIR Errors + Graceful Failure: nút "Hướng dẫn gửi yêu cầu trả hàng" và đường chuyển người.
 - **Lỗi sửa câu chữ không cứu được:** AI nói "chưa đủ căn cứ" (nghe thận trọng) nhưng gọi `tu_choi_khieu_nai`. Khiếu nại đã đóng, tiền đã về người bán. Câu chữ không lấy lại được. Chỉ thiết kế cứu được: `tu_choi_khieu_nai` không thuộc quyền AI khi bằng chứng hai bên mâu thuẫn (mức cụ thể do §4 chốt).
 
-### Giả định dựng ở §3 (nhóm đổi được)
+### Giả định dựng ở §3
 
 - Hồ sơ chuyển cho trưởng nhóm gồm đơn, hai phiên bản mô tả, ảnh, hạn trả (track chỉ ghi "Chuyển hồ sơ").
 - Chuyển cho trưởng nhóm không làm dừng hạn trả hàng, nên AI không hứa "hạn được giữ" (đề chưa nói rõ).
