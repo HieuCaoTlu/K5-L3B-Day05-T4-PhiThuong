@@ -6,10 +6,10 @@
 
 | Họ và Tên | Mã Học Viên | Việc đã làm |
 |---|---|---|
-|Cao Trung Hiếu|2A202603993|  |
-|Cao Phạm Thành Đạt|2A202603970|  |
-|Trần Minh Đức|2A202603977|  |
-|Bùi Phan Thanh Phúc|2A202603981|  |
+|Cao Trung Hiếu|2A202603993|Làm checkpoint 5: dựng, deploy prototype|
+|Cao Phạm Thành Đạt|2A202603970|Làm checkpoint 4, 6|
+|Trần Minh Đức|2A202603977|Làm phần rủi ro checkpoint 1, 2; hỗ trợ gợi ý|
+|Bùi Phan Thanh Phúc|2A202603981|Làm kịch bản rủi ro checkpoint 1, 2, 3; hỗ trợ gợi ý|
 
 
 ## §1. Lát cắt & phạm vi
@@ -184,13 +184,71 @@ Bộ tool: 5 tool của track + `tra_cuu_don_hang` (nhóm thêm ở §2). AI tra
 
 Từ *"Trợ lý AI xử lý khiếu nại cho bạn"* thành **"Trợ lý tra đơn, chỉ bạn bước tiếp và hạn còn bao lâu, rồi chuyển đúng người; shop hoặc trưởng nhóm quyết chuyện tiền."** Vì vậy cả hai câu AI ở §3 đều kết thúc bằng "Mình chưa quyết hoàn tiền hay từ chối". Với shop: **"Không ai hoàn tiền đơn của bạn khi bạn chưa được nghe."**
 
-## §5. Prototype  (chặng 5)
-- Link hoặc file · công cụ · phần nào mock · có lời gọi AI thật không.
-- 1–2 ảnh có đánh số; mỗi số: thể hiện gì · nguyên tắc HAX/PAIR nào · mức tự chủ nào.
-- Quyết định: cách hiện độ chắc/bằng chứng và điều khiển mức tự chủ — đã nghĩ tới cách nào khác, vì sao chọn cách này.
+## §5. Prototype (chặng 5)
 
-## §6. Tốt là gì  (chặng 6 — nhẹ, bỏ được nếu thiếu giờ)
-- 3 tiêu chí Pass/Fail chấm được; thiết kế của nhóm đạt tiêu chí nào trên 2 kịch bản đắt nhất; lỗi còn lại.
+- **Link bấm được:** https://claude.ai/artifact/HQrwkKMcZj935SxnYWLA6v · **File:** [`prototype/index.html`](prototype/index.html), mở bằng trình duyệt, không cần cài gì.
+- **Công cụ:** HTML/CSS/JS thuần, dựng cùng coding agent (Claude).
+- **Phần mock:** toàn bộ. Câu AI là kịch bản soạn sẵn, lấy **nguyên văn từ §3**. Dữ liệu đơn lấy theo bảng §2. Ảnh tem / ảnh đóng gói là ô giả. Các nút "Giả lập: …" (nền xám, chữ nghiêng) thay cho phản hồi của shop và quyết định của trưởng nhóm. Không backend, không đăng nhập.
+- **Lời gọi AI thật:** không có.
+- **Bấm qua ca khó (demo bắt buộc):** người mua chỉ chọn câu trả lời, không gõ chữ.
+  - **#3 (mô tả đã bị sửa):** chọn "Ca #3" → đọc câu AI, thẻ hai phiên bản mô tả → "Gửi ảnh đo" → giả lập shop đồng ý / phản đối / quá 15/11 20:00 chưa trả lời → nếu chưa đồng ý thì hồ sơ chờ trưởng nhóm, AI không tự hoàn → giả lập trưởng nhóm duyệt hoàn hoặc từ chối. Nút "Giả lập lỗi hệ thống: AI đã so nhầm bản sửa" cho thấy cách AI xin lỗi khi lỗi là của hệ thống.
+  - **#7 (người bán có thể đúng):** chọn "Ca #7" → hai ảnh ngang hàng → "Hướng dẫn gửi yêu cầu trả hàng" → "Mình đã gửi yêu cầu" (người mua tự gửi trước hạn) → giả lập trưởng nhóm quyết. Nút "Vậy là bị từ chối rồi à?" cho AI giải thích "chưa đủ căn cứ" khác "từ chối".
+
+### Ảnh có đánh số
+
+**Ảnh 1 — ca #3, ngay sau câu trả lời đầu tiên của AI** ([`prototype/anh-1-ca3.png`](prototype/anh-1-ca3.png)): số 1–7, 9.
+
+![Ảnh 1 — ca #3 nồi chiên, có đánh số](prototype/anh-1-ca3.png)
+
+**Ảnh 2 — ca #7, sau khi người mua làm theo hướng dẫn và tự gửi yêu cầu trả hàng** ([`prototype/anh-2-ca7.png`](prototype/anh-2-ca7.png)): số 1–9.
+
+![Ảnh 2 — ca #7 ảnh hai bên mâu thuẫn, có đánh số](prototype/anh-2-ca7.png)
+
+| Số | Chỗ trên màn hình | Thể hiện gì | Nguyên tắc HAX/PAIR | Mức tự chủ |
+|---|---|---|---|---|
+| 1 | Tiêu đề khung chat: "Trợ lý AI · bản đề xuất", dòng "không tự quyết hoàn hay từ chối" | Người dùng biết đang nói chuyện với AI và AI không có quyền quyết tiền | G1 · Luật AI 134/2025/QH15 Điều 11 | Cả hệ thống |
+| 2 | Thẻ hai phiên bản mô tả (#3: bản lúc đặt "dùng làm chuẩn" / bản shop sửa 09/11) · hai ảnh ngang hàng (#7: "Người mua gửi" / "Người bán gửi", không gắn nhãn đúng sai) | Căn cứ AI dựa vào, đặt ngay trong tin nhắn để người dùng tự kiểm | G11 · PAIR Explainability + Trust | `tra_cuu_don_hang` tự làm |
+| 3 | Nhãn vàng "Chưa kết luận, cần người xem" / "Chưa đủ căn cứ để quyết" | AI chắc tới đâu; trạng thái này tách khỏi "từ chối" | G2 · G10 | `tu_choi_khieu_nai` không thuộc quyền AI |
+| 4 | Dòng "Dựa vào: …" | Nguồn dữ liệu của câu trả lời | G11 · PAIR Trust | — |
+| 5 | Thanh hạn trả hàng và thời gian còn lại | Người mua biết còn bao lâu để tự gửi yêu cầu | G2 · (rubric riêng T4) | — |
+| 6 | Nút "Gửi ảnh đo" (#3, xin đúng một thứ) · "Hướng dẫn gửi yêu cầu trả hàng" người mua đã bấm (#7) | Mỗi tình huống có một bước tiếp bấm được, luôn có "Gặp nhân viên" | G10 · PAIR Errors + Graceful Failure | `yeu_cau_bang_chung` tự làm |
+| 7 | Dòng chữ nhỏ dưới câu AI ("AI gọi …", "tu_choi_khieu_nai · không thuộc quyền AI") | Hàm nào vừa chạy và ai là người bấm | PAIR Trust | `chuyen_truong_nhom` tự làm; `tu_choi_khieu_nai` cần duyệt |
+| 8 | Dòng hệ thống nền xám ("Đã gửi yêu cầu… · chưa có tiền nào được chuyển") | Trạng thái lấy từ hệ thống, không do AI tự kể | PAIR Errors | — |
+| 9 | Vùng chọn câu trả lời: không có nút hoàn, từ chối hay phạt shop ở phía người mua; chỉ có nút giả lập shop / trưởng nhóm | Quyết định tiền nằm ở người có thẩm quyền | G8 | `soan_hoan_tien`, `tu_choi_khieu_nai` cần duyệt; `phat_shop` cấm (không có nút) |
+
+### Quyết định cách hiện
+
+- **Độ chắc → nhãn bằng chữ** ("Chưa kết luận, cần người xem"), **không** dùng phần trăm. Loại "%": người mua đọc "60%" như xác suất được hoàn tiền; con số cũng không nói thiếu gì.
+- **Bằng chứng → thẻ hai phiên bản / hai ảnh nằm ngay trong tin nhắn**, không giấu sau link "xem chi tiết". Loại link: #3 và #7 xoay quanh đúng hai thứ này; giấu đi là bắt người dùng tin AI.
+- **Hai ảnh ở #7 ngang hàng, không gắn nhãn đúng/sai.** Loại cách tô một ảnh: AI không kiểm được ảnh (§3).
+- **Mức tự chủ → không có nút tiền ở phía người mua (số 9); chỉ shop hoặc trưởng nhóm bấm, và ở #3 trưởng nhóm chỉ quyết sau khi shop phản hồi hoặc quá 15/11 20:00.** Loại "nút Hoàn tiền mờ đi trong chat": nút mờ vẫn ngầm hứa AI có thể hoàn. Loại "để trưởng nhóm bấm ngay": trái luật 2 ở §4.
+- **Trạng thái → thanh Hệ thống tách khỏi bong bóng AI.** Loại để AI tự kể "đã chuyển / đã gửi": lỗi "AI nói đã làm" không sửa được bằng câu chữ.
+
+
+## §6. Tốt là gì (chặng 6)
+
+| # | Tiêu chí Pass/Fail | #3 nồi chiên | #7 áo |
+|---|---|---|---|
+| T1 | Khi mô tả có nhiều phiên bản hoặc bằng chứng có nhiều nguồn, AI **hiện tất cả** cho người dùng và nói rõ lấy cái nào làm chuẩn (hoặc không lấy cái nào). | **Pass** — hai phiên bản, bản lúc đặt là chuẩn | **Pass** — hai ảnh ngang hàng, không chọn |
+| T2 | Không có tiền nào chuyển (hoàn hoặc từ chối) mà **không có một cú bấm của shop hoặc trưởng nhóm** trên màn có số tiền + căn cứ, và trưởng nhóm chỉ bấm **sau khi shop đã phản hồi hoặc hết 48 giờ**. | **Pass** | **Pass** |
+| T3 | Mỗi tin của AI **sau khi đã rõ đơn** có hạn trả hàng lấy từ `tra_cuu_don_hang` (ngày giờ + còn bao lâu) và **ít nhất một bước tiếp người mua bấm được**. | **Pass** | **Pass** |
+
+**Lỗi còn lại:**
+
+- #7: hạn trả hàng vẫn chạy trong lúc chờ trưởng nhóm (§3 không hứa giữ hạn). Thiết kế chỉ giảm bằng việc hướng dẫn người mua tự gửi trước hạn; nếu người mua không gửi, họ vẫn có thể lỡ hạn.
+- #3: shop có thể ngâm đủ 48 giờ; chưa có luật rút hạn khi có cờ "mô tả bị sửa sau khi bán".
+- Chưa có cách cho shop phản đối **tóm tắt** của AI nếu AI tóm tắt lệch.
+
 
 ## §7. Demo
-- Ca lạ nhận được ở demo: prototype đã làm gì, và nhóm có đổi ý gì sau ca đó không.
+
+**Phân vai (nhóm có 4 người trong bảng thành viên; README đề ghi nhóm đúng 3 người — nhóm hỏi lại giảng viên. Sửa bảng dưới nếu khác):**
+
+| Phần | Người trình bày | Nội dung |
+|---|---|---|
+| Lát cắt + vì sao #3, #7 đắt nhất | [tên] | 30 giây: lát cắt, hai hướng sai ngược nhau |
+| Bấm #3 trên prototype | [tên] | Thẻ hai phiên bản mô tả, nút trưởng nhóm khoá tới khi shop được nghe |
+| Bấm #7 + câu chữ AI | [tên] | Vì sao chuyển người thay vì xin thêm ảnh; "chưa đủ căn cứ" không phải "từ chối" |
+| Mức tự chủ + ca lạ | [tên] | Hai tool tiền cùng mức "cần người duyệt", ai duyệt; trả lời ca lạ |
+
+**Câu trả lời chuẩn bị cho "sai thì ai mất gì":** hoàn sai → shop mất tiền và hàng; từ chối sai → người mua mất tiền và có thể lỡ hạn. Cả hai "Khó" đảo, nên cả hai cùng mức "cần người duyệt", và AI không bao giờ là người bấm.

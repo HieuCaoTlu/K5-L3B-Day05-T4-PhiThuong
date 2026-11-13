@@ -54,7 +54,13 @@ Hai lựa chọn đầu tiên trong khung chat là hai kịch bản đắt nhấ
 
 ## Ảnh đánh số
 
-*(Chưa có ảnh. Cần chụp 2 ảnh: `anh-1-ca3.png` sau bước 1 của ca #3, `anh-2-ca7.png` sau bước 1 của ca #7, rồi đánh số các chỗ theo bảng dưới.)*
+**Ảnh 1 — ca #3, sau bước 1** (số 1–7, 9):
+
+![Ảnh 1 — ca #3](anh-1-ca3.png)
+
+**Ảnh 2 — ca #7, sau khi người mua làm theo hướng dẫn và tự gửi yêu cầu trả hàng** (số 1–9):
+
+![Ảnh 2 — ca #7](anh-2-ca7.png)
 
 | Số | Chỗ trên màn hình | Thể hiện gì | Nguyên tắc HAX/PAIR | Mức tự chủ |
 |---|---|---|---|---|
@@ -63,7 +69,7 @@ Hai lựa chọn đầu tiên trong khung chat là hai kịch bản đắt nhấ
 | 3 | Nhãn vàng "Chưa kết luận, cần người xem" / "Chưa đủ căn cứ để quyết" | AI chắc tới đâu. Trạng thái này tách khỏi "từ chối" | G10, G2 | `tu_choi_khieu_nai` không thuộc quyền AI |
 | 4 | Dòng "Dựa vào: …" | Nguồn dữ liệu của câu trả lời | G11 | — |
 | 5 | Thanh hạn trả hàng và thời gian còn lại | Người mua biết còn bao lâu để tự gửi yêu cầu | G2 | — |
-| 6 | Nút "Gửi ảnh đo" / "Hướng dẫn gửi yêu cầu trả hàng" / "Gặp nhân viên" | Mỗi tình huống có một đường đi tiếp, luôn có đường chuyển người | PAIR Errors + Graceful Failure, G8 | `chuyen_truong_nhom` tự làm |
+| 6 | Nút "Gửi ảnh đo" (ảnh 1) / "Hướng dẫn gửi yêu cầu trả hàng" người mua đã bấm (ảnh 2); luôn có "Gặp nhân viên" | Mỗi tình huống có một đường đi tiếp, luôn có đường chuyển người | PAIR Errors + Graceful Failure, G8 | `chuyen_truong_nhom` tự làm |
 | 7 | Dòng chữ nhỏ dưới câu AI ("AI gọi …", "Trưởng nhóm bấm → …") | Hàm nào vừa chạy và ai là người bấm | — | Thể hiện mức của từng tool |
 | 8 | Dòng hệ thống nền xám ("Đã gửi yêu cầu… · chưa có tiền nào được chuyển") | Trạng thái lấy từ hệ thống, không do AI tự nói | PAIR Errors | — |
 | 9 | Không có nút hoàn hay từ chối ở phía người mua; chỉ có "Shop bấm" / "Trưởng nhóm bấm" | Quyết định tiền nằm ở người có thẩm quyền | — | `soan_hoan_tien`, `tu_choi_khieu_nai` cần duyệt; `phat_shop` cấm (không có nút) |

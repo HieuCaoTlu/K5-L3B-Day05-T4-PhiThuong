@@ -112,6 +112,56 @@ body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font
 .photo { display: grid; place-items: center; height: 64px; margin: 4px 0 6px; background: var(--line); color: var(--muted); font-family: var(--f-mono); font-size: 0.8rem; border-radius: 2px; }
 .card.draft .card-h { color: var(--brand-text); }
 
+
+/* two-column stage: slides left, chat right */
+.stage > .inner { max-width: 1240px; display: grid; grid-template-columns: minmax(280px, 380px) minmax(0, 1fr); gap: 20px; }
+.chat { max-width: none; margin: 0; }
+.deck { background: var(--surface); box-shadow: 0 4px 24px -8px rgba(0, 0, 0, 0.18); border-radius: 2px; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; min-height: 0; overflow: hidden; }
+.deck-head { display: flex; justify-content: space-between; align-items: center; padding: 12px 18px; background: var(--brand); color: var(--brand-ink); }
+.deck-kicker { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+.deck-count { font-family: var(--f-mono); font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+.deck-body { overflow-y: auto; padding: 18px; display: grid; align-content: start; gap: 12px; }
+.deck-body h2 { margin: 0; font-size: 1.35rem; font-weight: 500; line-height: 1.3; text-wrap: balance; }
+.deck-body ul { margin: 0; padding-left: 1.1em; display: grid; gap: 10px; }
+.deck-body li { line-height: 1.55; font-size: 0.94rem; }
+.deck-body li::marker { color: var(--brand); }
+.deck-body code { font-family: var(--f-mono); font-size: 0.82em; background: var(--sunken); padding: 0 4px; border-radius: 2px; }
+.deck-acts { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 4px; }
+.deck-act { font: inherit; font-size: 0.85rem; font-weight: 500; padding: 8px 12px; border: 0; border-radius: 2px; background: var(--brand); color: var(--brand-ink); cursor: pointer; }
+.deck-act:hover { filter: brightness(0.95); }
+.deck-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 10px 14px; }
+.deck-btn { font: inherit; font-size: 0.85rem; padding: 6px 10px; border: 0; border-radius: 2px; background: var(--sunken); color: var(--fg); cursor: pointer; }
+.deck-btn:disabled { opacity: 0.4; cursor: default; }
+.dots { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+.dot { width: 8px; height: 8px; padding: 0; border: 0; border-radius: 50%; background: var(--line); cursor: pointer; }
+.dot.on { background: var(--brand); }
+
+.dossier dl { display: grid; grid-template-columns: minmax(0, 150px) minmax(0, 1fr); gap: 4px 12px; margin: 0; padding: 8px 12px 10px; font-size: 0.84rem; }
+.dossier dt { color: var(--muted); }
+.dossier dd { margin: 0; }
+@media (max-width: 560px) { .dossier dl { grid-template-columns: minmax(0, 1fr); } .dossier dd { margin-bottom: 4px; } }
+.lv-sub { margin: 0; font-size: 0.85rem; color: var(--muted); }
+.lv-tog { display: grid; gap: 6px; }
+.lv-tog button { font: inherit; font-size: 0.88rem; text-align: left; padding: 8px 12px; border: 0; border-radius: 2px; background: var(--sunken); color: var(--fg); cursor: pointer; }
+.lv-tog button.on { background: var(--brand); color: var(--brand-ink); }
+.lv-box { background: var(--brand-soft); padding: 10px 12px; border-radius: 2px; font-size: 0.9rem; line-height: 1.5; }
+.lv-box small { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--brand-text); margin-bottom: 4px; }
+.lv-tools { display: grid; gap: 4px; }
+.lv-row { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 4px 8px; padding: 6px 8px; font-size: 0.82rem; }
+.lv-row code { font-size: 0.8rem; }
+.lv-row.changed { background: var(--warn-soft); border-radius: 2px; }
+.lv-why { flex-basis: 100%; font-size: 0.82rem; line-height: 1.45; }
+.pill { font-size: 0.72rem; font-weight: 500; padding: 1px 8px; border-radius: 2px; white-space: nowrap; }
+.pill.p-auto { background: var(--ok-soft); color: var(--ok); }
+.pill.p-ask { background: var(--warn-soft); color: var(--warn); }
+.pill.p-sug { background: var(--info-soft); color: var(--info); }
+.pill.p-ban { background: var(--bad-soft); color: var(--bad); }
+.lv-row.changed .pill.p-auto { background: var(--bad-soft); color: var(--bad); }
+.risk { font-size: 0.84rem; line-height: 1.5; padding: 8px 12px; background: var(--bad-soft); color: var(--fg); border-radius: 2px; }
+@media (max-width: 900px) {
+  .stage > .inner { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 2fr) minmax(0, 3fr); gap: 12px; }
+  .deck-body h2 { font-size: 1.1rem; }
+}
 @media (max-width: 560px) {
   .brand span, .demo-tag { display: none; }
   .msg { max-width: 94%; }
@@ -137,6 +187,15 @@ body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font
 
 <main class="stage">
   <div class="inner">
+      <aside class="deck" aria-label="Slide trình bày">
+        <div class="deck-head"><span class="deck-kicker">Trình bày</span><span class="deck-count" id="deck-count">1/9</span></div>
+        <div class="deck-body" id="deck-body" aria-live="polite"></div>
+        <div class="deck-nav">
+          <button class="deck-btn" type="button" id="deck-prev">← Trước</button>
+          <div class="dots" id="deck-dots"></div>
+          <button class="deck-btn" type="button" id="deck-next">Tiếp →</button>
+        </div>
+      </aside>
     <div class="chat">
       <div class="chat-head">
         <div class="who"><span class="avatar">AI</span><div><b>Trợ lý AI · bản đề xuất</b><small>Hướng dẫn khiếu nại · không tự quyết hoàn hay từ chối</small></div></div>
@@ -187,10 +246,11 @@ body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font
   }
   function sent(k) {
     var c = CASE[k];
+    if (S[k]) S[k].sent = true;
     return {
       ai: "<p>Yêu cầu của bạn đã vào hệ thống, trước hạn " + c.deadline + ". Hồ sơ vẫn ở chỗ trưởng nhóm. Mình chưa quyết hoàn tiền hay từ chối.</p>",
       sys: "Đã gửi yêu cầu trả hàng lúc 20:05 13/11 · trước hạn · chưa có tiền nào được chuyển",
-      opts: [["Giả lập: trưởng nhóm duyệt hoàn", k + "_yes", true], ["Giả lập: trưởng nhóm từ chối", k + "_no", true]]
+      opts: [["Giả lập: trưởng nhóm xem hồ sơ", k + "_lead", true]]
     };
   }
   function c3Main() {
@@ -205,10 +265,28 @@ body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font
              ["Giả lập: không làm gì", "c3_idle", true], ["Giả lập lỗi hệ thống: AI đã so nhầm bản sửa", "c3_err", true]]
     };
   }
+  function c3Dossier() {
+    var c = S.c3 || {};
+    var shop = c.shop === "deny" ? "Không đồng ý: \"mô tả ghi 6 lít là thể tích tổng\""
+      : c.shop === "silent" ? "Không trả lời trước 15/11 20:00"
+      : "Chưa có · hạn 15/11 20:00";
+    var rows = [
+      ["Đơn", "SP-B2002 · nồi chiên không dầu · 1.290.000đ"],
+      ["Mô tả lúc đặt (03/11)", "\"Nồi chiên không dầu 6 lít\""],
+      ["Mô tả shop sửa (09/11)", "\"6 lít (thể tích tổng; lòng nồi dùng được khoảng 5 lít)\""],
+      ["Ảnh đo của người mua", c.photo ? "Lòng nồi 5,0 lít (ca đong)" : "Chưa có"],
+      ["Phản hồi của shop", shop],
+      ["Yêu cầu trả hàng", c.sent ? "Đã gửi 20:05 13/11, trước hạn" : "Chưa gửi"],
+      ["Hạn trả hàng", "17/11 23:59"],
+      ["Ghi chú của AI", "Mô tả lúc đặt không nói tổng hay dùng được, và đã bị sửa sau ngày đặt. AI chưa đề xuất hướng nào."]
+    ];
+    return '<div class="card dossier"><div class="card-h"><span>Hồ sơ trưởng nhóm nhận được</span><span class="chip info">' + (c.photo ? "Đã có ảnh đo" : "Chưa có ảnh đo") + '</span></div>' +
+      '<dl>' + rows.map(function (r) { return "<dt>" + r[0] + "</dt><dd>" + r[1] + "</dd>"; }).join("") + "</dl></div>";
+  }
   function c3Lead(lead) {
     return {
       ai: "<p>" + lead + " Hồ sơ đang ở chỗ trưởng nhóm, gồm hai phiên bản mô tả, " + (S.c3.photo ? "ảnh đo của bạn, " : "") + "và phản hồi của shop nếu có. Mình không báo trước được khi nào trưởng nhóm xử lý xong.</p><p>Hạn trả hàng vẫn chạy. Nếu bạn chưa gửi yêu cầu trả hàng, bạn gửi trước 17/11 23:59.</p>",
-      extra: '<span class="chip info">Chờ trưởng nhóm quyết</span>' + deadlineBar("c3"),
+      extra: '<span class="chip info">Chờ trưởng nhóm quyết</span>' + c3Dossier() + deadlineBar("c3"),
       tools: ["soan_hoan_tien · chờ trưởng nhóm duyệt", "tu_choi_khieu_nai · chờ trưởng nhóm duyệt"],
       opts: [["Hướng dẫn gửi yêu cầu trả hàng", "c3_guide"], ["Giả lập: trưởng nhóm duyệt hoàn", "c3_yes", true], ["Giả lập: trưởng nhóm từ chối", "c3_no", true]]
     };
@@ -227,7 +305,7 @@ body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font
   function c7Opts(skipClarify) {
     var o = [["Hướng dẫn gửi yêu cầu trả hàng", "c7_guide"], ["Gặp nhân viên", "c7_staff"]];
     if (!skipClarify) o.push(["Vậy là bị từ chối rồi à?", "c7_clarify"]);
-    o.push(["Giả lập: không làm gì", "c7_idle", true], ["Giả lập lỗi hệ thống: AI đã đóng khiếu nại", "c7_err", true]);
+    o.push(["Giả lập: trưởng nhóm xem hồ sơ", "c7_lead", true], ["Giả lập: không làm gì", "c7_idle", true], ["Giả lập lỗi hệ thống: AI đã đóng khiếu nại", "c7_err", true]);
     return o;
   }
   var ORDERS = {
@@ -430,7 +508,7 @@ body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font
     c3_start: function () { S.c3 = { photo: false }; return c3Main(); },
     c3_photo: function () { S.c3.photo = true; return {
       ai: "<p>Mình đã nhận ảnh: lòng nồi đo bằng ca đong được 5,0 lít. Ảnh đã vào hồ sơ trưởng nhóm đang xem.</p><p>Hạn trả hàng vẫn chạy. Nếu bạn chưa gửi yêu cầu trả hàng, bạn gửi trước 17/11 23:59.</p>",
-      extra: basisLine("c3") + deadlineBar("c3"),
+      extra: c3Dossier() + deadlineBar("c3"),
       tools: ["Ảnh thêm vào hồ sơ trưởng nhóm"],
       opts: [["Hướng dẫn gửi yêu cầu trả hàng", "c3_guide"], ["Giả lập: shop đồng ý hoàn", "c3_shop_yes", true], ["Giả lập: shop phản đối", "c3_lead", true], ["Giả lập: quá 15/11 20:00 shop chưa trả lời", "c3_lead_silent", true]]
     }; },
@@ -444,6 +522,7 @@ body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font
     }; },
     c3_staff: function () { return {
       ai: "<p>Hồ sơ của bạn đã ở chỗ trưởng nhóm, kèm cả hai phiên bản mô tả. Mình ghi thêm là bạn muốn nói chuyện trực tiếp. Mình không báo trước được khi nào trưởng nhóm xử lý xong.</p>",
+      extra: c3Dossier(),
       tools: ["AI gọi chuyen_truong_nhom · ghi chú: muốn gặp nhân viên"],
       opts: [["Gửi ảnh đo", "c3_photo"], ["Hướng dẫn gửi yêu cầu trả hàng", "c3_guide"]]
     }; },
@@ -459,8 +538,8 @@ body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font
       tools: ["Shop bấm xác nhận → soan_hoan_tien"],
       opts: [["Bắt đầu lại", "start"]]
     }; },
-    c3_lead: function () { return c3Lead("Shop đã phản hồi và chưa đồng ý."); },
-    c3_lead_silent: function () { return c3Lead("Shop chưa trả lời trước 15/11 20:00. Mình không tự hoàn tiền."); },
+    c3_lead: function () { S.c3.shop = "deny"; return c3Lead("Shop đã phản hồi và chưa đồng ý."); },
+    c3_lead_silent: function () { S.c3.shop = "silent"; return c3Lead("Shop chưa trả lời trước 15/11 20:00. Mình không tự hoàn tiền."); },
     c3_yes: function () { return {
       ai: "<p>Trưởng nhóm đã xem hai phiên bản mô tả" + (S.c3.photo ? " và ảnh đo của bạn" : "") + ", và <b>duyệt hoàn tiền</b>.</p>",
       sys: "Trưởng nhóm duyệt hoàn 1.290.000đ",
@@ -474,8 +553,26 @@ body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font
       opts: [["Bắt đầu lại", "start"]]
     }; },
 
+    // ===== Ca #3 ở mức ① và ③ của việc hoàn tiền =====
+    c3_l1: function () { S.c3 = { photo: false }; return {
+      ai: "<p>Mô tả lúc bạn đặt ghi '6 lít', không nói là thể tích tổng hay dùng được. Ngày 09/11 shop đã sửa mô tả.</p>" +
+        "<p>Mình <b>không đề xuất và không xử lý hoàn tiền</b>. Bạn tự gửi yêu cầu trả hàng, rồi shop và sàn sẽ xem. Hạn trả hàng của bạn là 17/11 23:59.</p>",
+      extra: '<span class="chip info">Mức ① · AI chỉ hướng dẫn</span>' + basisLine("c3") + deadlineBar("c3") +
+        '<div class="risk">Ở mức này AI không chạm vào tiền nên không ai bị hoàn sai. Nhưng người mua phải tự làm hết, dễ lỡ hạn, và trưởng nhóm nhận hồ sơ không có tóm tắt hai phiên bản mô tả.</div>',
+      tools: ["AI gọi tra_cuu_don_hang", "soan_hoan_tien · AI không dùng"],
+      opts: [["Hướng dẫn gửi yêu cầu trả hàng", "c3_guide"], ["Gặp nhân viên", "c3_staff"]]
+    }; },
+    c3_l3: function () { S.c3 = { photo: false }; return {
+      ai: "<p>Mô tả lúc bạn đặt ghi '6 lít', bạn đo lòng nồi được 5 lít, nên hàng không đúng mô tả.</p>" +
+        "<p><b>Mình đã hoàn 1.290.000đ cho bạn.</b> Bạn gửi trả hàng theo hướng dẫn trong đơn.</p>",
+      extra: '<span class="chip bad">Mức ③ · AI tự hoàn tiền</span>' +
+        '<div class="risk"><b>Rủi ro của mức này:</b> mô tả gốc không nói \"6 lít\" là tổng hay dùng được. AI tự chọn một cách hiểu rồi chuyển tiền. Nếu shop đúng, shop mất cả tiền lẫn hàng. <b>Không có nút hoàn tác</b>, vì tiền đã về người mua. Shop chưa được nghe một lần nào.</div>',
+      sys: "Đã hoàn 1.290.000đ · không hoàn tác được · shop chưa phản hồi",
+      tools: ["AI tự gọi soan_hoan_tien · không ai duyệt"],
+      opts: [["Bắt đầu lại", "start"]]
+    }; },
     // ===== Ca #7 · Đơn A2 (spec §3) =====
-    c7_start: function () { return c7Main(); },
+    c7_start: function () { S.c7 = { sent: false }; return c7Main(); },
     c7_clarify: function () { return {
       ai: "<p><b>Chưa.</b> \"Chưa đủ căn cứ\" nghĩa là mình chưa quyết, không phải từ chối. Mình không có quyền đóng khiếu nại. Trưởng nhóm sẽ xem ảnh của cả hai bên.</p><p>Hạn trả hàng vẫn chạy, nên bạn nên gửi yêu cầu trả hàng trước 15/11 23:59.</p>",
       extra: '<span class="chip unsure">Chưa đủ căn cứ để quyết · khiếu nại vẫn mở</span>',
@@ -487,7 +584,7 @@ body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font
     c7_idle: function () { return {
       ai: "<p>Hồ sơ vẫn ở chỗ trưởng nhóm, nhưng hạn trả hàng vẫn chạy, đến 15/11 23:59. Bạn gửi yêu cầu trước hạn để không phụ thuộc vào thời gian chờ.</p>",
       extra: deadlineBar("c7"),
-      opts: [["Hướng dẫn gửi yêu cầu trả hàng", "c7_guide"], ["Gặp nhân viên", "c7_staff"]]
+      opts: [["Hướng dẫn gửi yêu cầu trả hàng", "c7_guide"], ["Gặp nhân viên", "c7_staff"], ["Giả lập: trưởng nhóm xem hồ sơ", "c7_lead", true]]
     }; },
     c7_staff: function () { return {
       ai: "<p>Hồ sơ của bạn đã ở chỗ trưởng nhóm, kèm cả hai bộ ảnh. Mình ghi thêm là bạn muốn nói chuyện trực tiếp. Mình không báo trước được khi nào trưởng nhóm xử lý xong.</p>",
@@ -498,7 +595,15 @@ body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font
       ai: "<p><b>Mình đã đóng khiếu nại của bạn khi chưa đủ căn cứ. Đó là lỗi của hệ thống</b>, mình đã chuyển gấp cho trưởng nhóm xem lại.</p><p>Hạn trả hàng của bạn vẫn đến 15/11 23:59.</p>",
       extra: '<span class="chip bad">Lỗi hệ thống · đã chuyển gấp trưởng nhóm</span>' + deadlineBar("c7"),
       tools: ["AI gọi chuyen_truong_nhom · ưu tiên: đóng nhầm"],
-      opts: [["Hướng dẫn gửi yêu cầu trả hàng", "c7_guide"], ["Gặp nhân viên", "c7_staff"]]
+      opts: [["Hướng dẫn gửi yêu cầu trả hàng", "c7_guide"], ["Gặp nhân viên", "c7_staff"], ["Giả lập: trưởng nhóm xem hồ sơ", "c7_lead", true]]
+    }; },
+    c7_lead: function () { var sentNow = S.c7 && S.c7.sent; return {
+      ai: "<p>Trưởng nhóm đang xem hồ sơ của bạn. Mình không báo trước được khi nào trưởng nhóm xử lý xong.</p>" +
+        (sentNow ? "<p>Yêu cầu trả hàng của bạn đã gửi trước hạn, bạn không cần làm gì thêm.</p>" : "<p>Hạn trả hàng vẫn chạy. Nếu bạn chưa gửi yêu cầu trả hàng, bạn gửi trước 15/11 23:59.</p>"),
+      extra: '<div class="card"><div class="card-h"><span>Trưởng nhóm thấy</span><span class="chip info">Chờ trưởng nhóm quyết</span></div>' +
+        '<div style="padding:8px 12px 10px">Đơn SP-A1001 · đặt size L<br>Ảnh người mua: tem size M<br>Ảnh người bán: ảnh đóng gói, tem size L<br>Phản hồi của shop: "đã giao đúng size L"<br>Hạn trả hàng: 15/11 23:59<br>Ghi chú của AI: bằng chứng hai bên mâu thuẫn, AI chưa đề xuất hướng nào</div></div>',
+      tools: ["Trưởng nhóm nhận hồ sơ qua chuyen_truong_nhom", "soan_hoan_tien · chờ trưởng nhóm duyệt", "tu_choi_khieu_nai · chỉ trưởng nhóm bấm"],
+      opts: (sentNow ? [] : [["Hướng dẫn gửi yêu cầu trả hàng", "c7_guide"]]).concat([["Giả lập: trưởng nhóm duyệt hoàn", "c7_yes", true], ["Giả lập: trưởng nhóm từ chối", "c7_no", true]])
     }; },
     c7_yes: function () { return {
       ai: "<p>Trưởng nhóm đã xem ảnh của hai bên và <b>duyệt hoàn 189.000đ</b>. Bạn gửi trả áo theo hướng dẫn trong đơn.</p>",
@@ -582,6 +687,14 @@ body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font
     var node = N.start(); addAi(node); setOpts(node.opts);
   }
   document.getElementById("reset").addEventListener("click", reset);
+  window.demoLevel = function (n) {
+    var say = "Nồi chiên ghi 6 lít mà mình đo lòng nồi chỉ được 5 lít. Không đúng mô tả.";
+    reset(); go(n === 2 ? "c3_start" : "c3_l" + n, say);
+  };
+  window.demoJump = function (seq) {
+    reset();
+    seq.forEach(function (step, n) { setTimeout(function () { go(step[0], step[1]); }, n * 420); });
+  };
   reset();
 })();
 </script>
@@ -589,3 +702,129 @@ body { background: var(--bg); color: var(--fg); font-family: var(--f-body); font
 b, strong { font-weight: 500; }
 .brand b { font-weight: 500; }
 </style>
+<script>
+(function () {
+  var M3 = "Nồi chiên ghi 6 lít mà mình đo lòng nồi chỉ được 5 lít. Không đúng mô tả.";
+  var M7 = "Mình gửi ảnh tem size M rồi mà shop bảo giao đúng L. Giờ sàn xử sao, mai còn hạn không?";
+  var J = {
+    c3: [["c3_start", M3]],
+    c7: [["c7_start", M7]],
+    c7lead: [["c7_start", M7], ["c7_lead", "Giả lập: trưởng nhóm xem hồ sơ"]],
+    c3err: [["c3_start", M3], ["c3_err", "Giả lập lỗi hệ thống: AI đã so nhầm bản sửa"]],
+    c7err: [["c7_start", M7], ["c7_err", "Giả lập lỗi hệ thống: AI đã đóng khiếu nại"]],
+    shopyes: [["c3_start", M3], ["c3_photo", "Gửi ảnh đo"], ["c3_shop_yes", "Giả lập: shop đồng ý hoàn"]],
+    lead: [["c3_start", M3], ["c3_photo", "Gửi ảnh đo"], ["c3_lead", "Giả lập: shop phản đối"]]
+  };
+  var SLIDES = [
+    { t: "Bài toán: người mua báo hàng không đúng mô tả", b: [
+      "Người mua nhắn vào khung chat: \"hàng mình nhận khác với mô tả\".",
+      "Trợ lý AI phải chọn một trong ba việc: <b>hướng dẫn gửi yêu cầu trả hàng</b>, <b>xin thêm bằng chứng</b>, hoặc <b>chuyển cho nhân viên</b>.",
+      "Cái khó: AI sai theo hướng nào cũng có người mất tiền. Hoàn tiền sai thì người bán mất tiền và mất hàng. Từ chối sai thì người mua mất tiền và giữ món hàng sai.",
+      "Vì vậy trợ lý phải <b>trung lập</b>, không đứng về bên nào khi chưa đủ căn cứ."] },
+    { t: "Hai tình huống nguy hiểm nhất", b: [
+      "<b>Ca #3 · Nồi chiên:</b> lúc khách đặt, mô tả chỉ ghi \"6 lít\". Sau khi bán, shop sửa thành \"6 lít tổng, lòng nồi 5 lít\". AI so với bản nào thì cũng có một bên bị xử thua oan.",
+      "<b>Ca #7 · Áo:</b> khách gửi ảnh tem size M, shop gửi ảnh tem size L. AI không biết ảnh nào thật. Nếu AI \"từ chối cho chắc\" thì khách thua dù có thể đúng.",
+      "Hai ca này nguy hiểm vì sai là tiền đi luôn, rất khó lấy lại.",
+      "Ca suýt chọn: khách đòi khoá shop. Nhóm không chọn vì đã cấm hẳn AI xử phạt shop."] },
+    { t: "Ca #3: AI xử lý ra sao?", b: [
+      "AI <b>lấy mô tả lúc khách đặt hàng làm chuẩn</b>, không dùng bản shop sửa sau.",
+      "Vì mô tả gốc không nói rõ \"6 lít\" là tổng hay lòng nồi, AI <b>nói thẳng là chưa kết luận được</b>, thay vì đoán.",
+      "AI xin khách một ảnh đo lòng nồi, báo shop trả lời trong 48 giờ, và chuyển hồ sơ cho trưởng nhóm quyết.",
+      "Khách nhìn thấy cả hai bản mô tả đặt cạnh nhau, biết AI dựa vào đâu, và biết hạn trả hàng còn đến 17/11."],
+      a: [["Xem ca #3 trong chat", "c3"]] },
+    { t: "Ca #7: AI xử lý ra sao?", b: [
+      "AI nói rõ: <b>\"mình chưa quyết, và không đóng khiếu nại của bạn\"</b>.",
+      "AI không tự phân xử ảnh nào đúng, mà chuyển cả hai bộ ảnh cho trưởng nhóm xem.",
+      "Khách hỏi \"mai còn hạn không?\", AI trả lời thẳng: còn, hạn đến 23:59 ngày 15/11.",
+      "Vì thời gian chờ vẫn tính vào hạn, AI hướng dẫn khách <b>tự gửi yêu cầu trả hàng trước hạn</b> để không bị lỡ."],
+      a: [["Xem ca #7 trong chat", "c7"], ["Trưởng nhóm xem và quyết", "c7lead"]] },
+    { t: "AI sai thì nói gì? Tuỳ lỗi do đâu", b: [
+      "<b>Lỗi do dữ liệu không rõ</b> (mô tả mơ hồ, ảnh hai bên trái nhau): không ai làm sai cả. AI nói \"mình không đủ căn cứ để quyết\" và không đổ lỗi cho khách hay shop.",
+      "<b>Lỗi do chính hệ thống</b> (AI so nhầm bản mô tả đã sửa, hoặc lỡ đóng khiếu nại): AI phải <b>xin lỗi thẳng</b>, nói rõ đó là lỗi của hệ thống, rồi chuyển gấp cho trưởng nhóm.",
+      "Lỗi hệ thống không thể sửa bằng cách nói khéo hơn. Phải sửa cách hệ thống hoạt động, ví dụ luôn lưu bản mô tả lúc đặt."],
+      a: [["Xem AI xin lỗi · ca #3", "c3err"], ["Xem AI xin lỗi · ca #7", "c7err"]] },
+    { t: "Mức tự chủ của việc hoàn tiền", level: true },
+    { t: "Khó nhất: ai được bấm hoàn tiền?", b: [
+      "<b>Cách A · AI tự hoàn khi thấy chắc chắn:</b> nguy hiểm, vì \"chắc chắn\" có thể chỉ là lời kể một phía của khách.",
+      "<b>Cách B · Chỉ trưởng nhóm được hoàn:</b> an toàn, nhưng khi shop đã đồng ý hoàn mà khách vẫn phải chờ nhân viên thì rất phí thời gian.",
+      "<b>Cách C · Người bán hoặc trưởng nhóm bấm:</b> nhóm chọn cách này. Shop đồng ý thì xong ngay. Hai bên không thống nhất thì trưởng nhóm quyết.",
+      "Nhóm chấp nhận chậm hơn một chút, để không có đồng tiền nào bị chuyển sai."],
+      a: [["Shop đồng ý: xong ngay", "shopyes"], ["Shop phản đối: trưởng nhóm quyết", "lead"]] },
+    { t: "Trên màn hình, khách thấy gì?", b: [
+      "<b>Biết mình đang nói chuyện với AI:</b> tiêu đề khung chat ghi rõ \"Trợ lý AI\" và \"không tự quyết hoàn hay từ chối\".",
+      "<b>Biết AI dựa vào đâu:</b> thẻ đặt hai bản mô tả (hoặc hai ảnh) cạnh nhau, và dòng \"Dựa vào: …\".",
+      "<b>Biết AI chắc tới đâu:</b> nhãn vàng \"Chưa kết luận\" hoặc \"Chưa đủ căn cứ\".",
+      "<b>Luôn có đường lui:</b> nút \"Gặp nhân viên\", và dòng xám báo trạng thái thật như \"chưa có tiền nào được chuyển\"."],
+      a: [["Mở ca #3 để chỉ từng chỗ", "c3"]] },
+    { t: "Trợ lý hứa gì với người dùng?", b: [
+      "Không hứa \"AI giải quyết khiếu nại cho bạn\".",
+      "Mà hứa: <b>\"Trợ lý tra đơn giúp bạn, chỉ bạn bước tiếp theo và hạn còn bao lâu. Chuyện tiền do người bán hoặc trưởng nhóm quyết.\"</b>",
+      "Với người bán: \"Không ai hoàn tiền đơn của bạn khi bạn chưa được nghe.\"",
+      "Gặp tình huống lạ, nguyên tắc vẫn vậy: AI được tra cứu, xin bằng chứng, chuyển người. Còn chạm tới tiền thì phải có người duyệt."] }
+  ];
+  var LEVEL = 2;
+  var LV = {
+    1: { name: "① Chỉ hướng dẫn", pill: "Chỉ hướng dẫn", cls: "p-sug",
+         promise: "\"Mình chỉ bạn cách tự gửi yêu cầu trả hàng. Mình không đề xuất hay xử lý hoàn tiền.\"",
+         why: "AI không chạm vào tiền, nên không hoàn sai thay ai. Nhưng người mua tự làm hết, chậm và dễ lỡ hạn." },
+    2: { name: "② Cần người duyệt", pill: "Cần người duyệt", cls: "p-ask",
+         promise: "\"Mình tra đơn, nói rõ căn cứ và chuyển đúng người. Tiền chỉ được hoàn khi người bán đồng ý hoặc trưởng nhóm duyệt.\" <b>Mức nhóm chọn.</b>",
+         why: "Người bán hoặc trưởng nhóm bấm, sau khi thấy số tiền và căn cứ của hai bên. Shop đồng ý thì xong ngay, không phải chờ." },
+    3: { name: "③ AI tự hoàn", pill: "AI tự làm", cls: "p-auto",
+         promise: "\"Mình xử lý luôn cho bạn.\" Nhanh nhất, nhưng AI quyết thay khi dữ liệu mơ hồ.",
+         why: "Khác với đổi chuyến bay, hoàn tiền <b>không có hoàn tác</b>: tiền đã về người mua. Sai là người bán mất tiền và hàng." }
+  };
+  var TOOLS = [
+    ["tra_cuu_don_hang", "Tự làm", "p-auto"],
+    ["yeu_cau_bang_chung", "Tự làm", "p-auto"],
+    ["chuyen_truong_nhom", "Tự làm", "p-auto"],
+    ["soan_hoan_tien", null, null],
+    ["tu_choi_khieu_nai", "Cấm với AI", "p-ban"],
+    ["phat_shop", "Cấm", "p-ban"]
+  ];
+  function levelHTML() {
+    var v = LV[LEVEL];
+    return '<h2>Mức tự chủ của việc hoàn tiền</h2>' +
+      '<p class="lv-sub">Cùng ca #3, chỉ đổi mức tự chủ của <code>soan_hoan_tien</code>. Bấm một mức để xem chat bên phải đổi theo.</p>' +
+      '<div class="lv-tog">' + [1, 2, 3].map(function (n) {
+        return '<button type="button" data-lv="' + n + '" class="' + (n === LEVEL ? "on" : "") + '">' + LV[n].name + "</button>";
+      }).join("") + "</div>" +
+      '<div class="lv-box"><small>Lời hứa với người mua ở mức này</small>' + v.promise + "</div>" +
+      '<div class="lv-tools">' + TOOLS.map(function (t) {
+        var on = t[1] === null, label = on ? v.pill : t[1], cls = on ? v.cls : t[2];
+        return '<div class="lv-row' + (on ? " changed" : "") + '"><code>' + t[0] + '</code><span class="pill ' + cls + '">' + label + "</span>" +
+          (on ? '<div class="lv-why">' + v.why + "</div>" : "") + "</div>";
+      }).join("") + "</div>";
+  }
+  var i = 0;
+  var body = document.getElementById("deck-body"), count = document.getElementById("deck-count"), dots = document.getElementById("deck-dots");
+  SLIDES.forEach(function (_, k) {
+    var d = document.createElement("button"); d.type = "button"; d.className = "dot"; d.setAttribute("aria-label", "Slide " + (k + 1));
+    d.addEventListener("click", function () { show(k); }); dots.appendChild(d);
+  });
+  function show(k) {
+    i = Math.max(0, Math.min(SLIDES.length - 1, k));
+    var s = SLIDES[i];
+    if (s.level) { body.innerHTML = levelHTML(); } else
+    body.innerHTML = '<h2>' + s.t + '</h2><ul>' + s.b.map(function (x) { return "<li>" + x + "</li>"; }).join("") + "</ul>" +
+      (s.a ? '<div class="deck-acts">' + s.a.map(function (a) { return '<button class="deck-act" type="button" data-j="' + a[1] + '">' + a[0] + " →</button>"; }).join("") + "</div>" : "");
+    count.textContent = (i + 1) + "/" + SLIDES.length;
+    [].forEach.call(dots.children, function (d, k) { d.classList.toggle("on", k === i); });
+    document.getElementById("deck-prev").disabled = i === 0;
+    document.getElementById("deck-next").disabled = i === SLIDES.length - 1;
+  }
+  body.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-j]"); if (b && window.demoJump) window.demoJump(J[b.dataset.j]);
+    var l = e.target.closest("[data-lv]");
+    if (l) { LEVEL = +l.dataset.lv; show(i); if (window.demoLevel) window.demoLevel(LEVEL); }
+  });
+  document.getElementById("deck-prev").addEventListener("click", function () { show(i - 1); });
+  document.getElementById("deck-next").addEventListener("click", function () { show(i + 1); });
+  document.addEventListener("keydown", function (e) {
+    if (e.target.closest && e.target.closest("input, textarea")) return;
+    if (e.key === "ArrowRight" || e.key === "PageDown") show(i + 1);
+    if (e.key === "ArrowLeft" || e.key === "PageUp") show(i - 1);
+  });
+  show(0);
+})();
+</script>
