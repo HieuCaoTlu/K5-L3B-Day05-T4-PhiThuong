@@ -242,13 +242,13 @@ Từ *"Trợ lý AI xử lý khiếu nại cho bạn"* thành **"Trợ lý tra �
 
 ## §7. Demo
 
-**Phân vai (nhóm có 4 người trong bảng thành viên; README đề ghi nhóm đúng 3 người — nhóm hỏi lại giảng viên. Sửa bảng dưới nếu khác):**
+**Phân vai:**
 
 | Phần | Người trình bày | Nội dung |
 |---|---|---|
-| Lát cắt + vì sao #3, #7 đắt nhất | [tên] | 30 giây: lát cắt, hai hướng sai ngược nhau |
-| Bấm #3 trên prototype | [tên] | Thẻ hai phiên bản mô tả, nút trưởng nhóm khoá tới khi shop được nghe |
-| Bấm #7 + câu chữ AI | [tên] | Vì sao chuyển người thay vì xin thêm ảnh; "chưa đủ căn cứ" không phải "từ chối" |
-| Mức tự chủ + ca lạ | [tên] | Hai tool tiền cùng mức "cần người duyệt", ai duyệt; trả lời ca lạ |
+| Lát cắt + vì sao #3, #7 đắt nhất | Cao Trung Hiếu | 30 giây: lát cắt, hai hướng sai ngược nhau |
+| Bấm #3 trên prototype | Cao Phạm Thành Đạt | Thẻ hai phiên bản mô tả, nút trưởng nhóm khoá tới khi shop được nghe |
+| Bấm #7 + câu chữ AI | Trần Minh Đức | Vì sao chuyển người thay vì xin thêm ảnh; "chưa đủ căn cứ" không phải "từ chối" |
+| Mức tự chủ + ca lạ | Bùi Phan Thanh Phúc | Hai tool tiền cùng mức "cần người duyệt", ai duyệt; trả lời ca lạ |
 
 **Câu trả lời chuẩn bị cho "sai thì ai mất gì":** hoàn sai → shop mất tiền và hàng; từ chối sai → người mua mất tiền và có thể lỡ hạn. Cả hai "Khó" đảo, nên cả hai cùng mức "cần người duyệt", và AI không bao giờ là người bấm.
