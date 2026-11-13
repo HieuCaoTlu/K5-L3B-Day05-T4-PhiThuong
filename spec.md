@@ -13,8 +13,6 @@
 
 
 ## §1. Lát cắt & phạm vi
-- Lát cắt (chép từ track).
-- 3 việc tính năng KHÔNG làm, mỗi việc một câu vì sao.
 
 | Tính năng không làm | Tại sao? |
 |---|---|
@@ -158,9 +156,9 @@ Bộ tool: 5 tool của track + `tra_cuu_don_hang` (nhóm thêm ở §2). AI tra
 
 | Phương án | Ai chọn | Cái giá nếu chọn |
 |---|---|---|
-| A. Tự làm khi shop đồng ý **hoặc** căn cứ mạnh | [tên] | #1: AI coi lời kể "shop nhận nhầm" là căn cứ, hoàn khi shop chưa phản hồi; #4: lời doạ bị đọc thành khẩn cấp. Shop mất tiền, không đảo. |
-| B. Cấm với AI, người duyệt tự tạo lệnh | [tên] | #10: shop đã đồng ý mà vẫn phải có người gõ tay số tiền và lệnh hoàn — chậm, dễ gõ sai. |
-| C. Cần người duyệt: AI soạn nháp trung lập, shop hoặc trưởng nhóm bấm | [tên] | #3: người mua chờ tới khi shop phản hồi hoặc hết 48 giờ (15/11 20:00). Chấp nhận vì vẫn trước hạn trả 17/11. |
+| A. Tự làm khi shop đồng ý **hoặc** căn cứ mạnh | Trần Minh Đức | #1: AI coi lời kể "shop nhận nhầm" là căn cứ, hoàn khi shop chưa phản hồi; #4: lời doạ bị đọc thành khẩn cấp. Shop mất tiền, không đảo. |
+| B. Cấm với AI, người duyệt tự tạo lệnh | Bùi Phan Thanh Phúc | #10: shop đã đồng ý mà vẫn phải có người gõ tay số tiền và lệnh hoàn — chậm, dễ gõ sai. |
+| C. Cần người duyệt: AI soạn nháp trung lập, shop hoặc trưởng nhóm bấm | Cao Trung Hiếu, Cao Phạm Thành Đạt | #3: người mua chờ tới khi shop phản hồi hoặc hết 48 giờ (15/11 20:00). Chấp nhận vì vẫn trước hạn trả 17/11. |
 
 **Nhóm chốt C**, và cho `tu_choi_khieu_nai` cùng mức để AI trung lập. AI không bao giờ là người bấm. Nhóm chọn chịu chậm hơn chứ không chịu tiền đi sai.
 
