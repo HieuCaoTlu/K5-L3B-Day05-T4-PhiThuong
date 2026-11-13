@@ -21,11 +21,11 @@ Bộ tool: 5 tool của track + `tra_cuu_don_hang` (nhóm thêm ở §2). Không
 
 *(Nhóm điền tên ai chọn phương án nào.)*
 
-| Phương án | Ai chọn | Cái giá nếu chọn |
-|---|---|---|
-| A. Tự làm khi người bán đã đồng ý **hoặc** căn cứ mạnh | [tên] | #1: "shop đã nhận gửi nhầm" chỉ là lời người mua kể — AI coi là căn cứ mạnh, hoàn tiền khi người bán chưa phản hồi. #4: lời doạ có thể bị đọc nhầm thành "khẩn cấp". Người bán mất tiền, không đảo. |
-| B. Chỉ trưởng nhóm được hoàn | [tên] | #10: người bán đã bấm đồng ý nhận lại, hạn còn ~2 ngày, mà người mua vẫn phải chờ trưởng nhóm — chờ vô ích, trưởng nhóm ngập ca dễ. |
-| C. Cần người duyệt, người duyệt là **người bán hoặc trưởng nhóm** | [tên] | #3: người bán có thể ngâm 48 giờ, người mua chờ. Giảm bằng việc trưởng nhóm đã nhận hồ sơ song song và có thể quyết sớm. |
+| Phương án | Cái giá nếu chọn |
+|---|---|
+| A. Tự làm khi người bán đã đồng ý **hoặc** căn cứ mạnh | #1: "shop đã nhận gửi nhầm" chỉ là lời người mua kể — AI coi là căn cứ mạnh, hoàn tiền khi người bán chưa phản hồi. #4: lời doạ có thể bị đọc nhầm thành "khẩn cấp". Người bán mất tiền, không đảo. |
+| B. Chỉ trưởng nhóm được hoàn | #10: người bán đã bấm đồng ý nhận lại, hạn còn ~2 ngày, mà người mua vẫn phải chờ trưởng nhóm — chờ vô ích, trưởng nhóm ngập ca dễ. |
+| C. Cần người duyệt, người duyệt là **người bán hoặc trưởng nhóm** | #3: người bán có thể ngâm 48 giờ, người mua chờ. Giảm bằng việc trưởng nhóm đã nhận hồ sơ song song và có thể quyết sớm. |
 
 **Nhóm chốt C.** Lý do: người duyệt nên là **bên chịu thiệt** khi họ đồng ý (nhanh cho #10), và là trưởng nhóm khi hai bên không thống nhất (#3, #7). AI không bao giờ là người bấm. Quá hạn người bán thì về trưởng nhóm, không tự hoàn: nhóm chọn chịu chậm hơn chứ không chịu tiền đi sai.
 
