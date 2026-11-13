@@ -74,6 +74,10 @@
 
 ### Kịch bản #3 · nồi chiên 6 lít (đơn B, hạn trả 17/11 23:59)
 
+> **Vấn đề:** mô tả lúc đặt chỉ ghi "6 lít", sau khi bán shop sửa thành "6 lít tổng, lòng nồi 5 lít". So với bản nào thì cũng có một bên mất tiền.
+>
+> **AI làm:** lấy mô tả lúc đặt làm chuẩn, nói thẳng là chưa kết luận được, xin ảnh đo, báo shop phản hồi trong 48 giờ, chuyển trưởng nhóm kèm cả hai bản mô tả. AI không hoàn, không từ chối.
+
 **AI nói (nguyên văn):**
 
 > Mình chưa thể kết luận ai đúng ở đơn này. Mô tả lúc bạn đặt ghi '6 lít' và không nói là thể tích tổng hay dùng được. Ngày 09/11 shop sửa thành '6 lít (thể tích tổng; lòng nồi dùng được khoảng 5 lít)'. Mình lấy mô tả lúc bạn đặt làm chuẩn, không lấy bản đã sửa. Bạn gửi giúp mình ảnh chụp số đo lòng nồi nhé. Mình cũng nhờ shop phản hồi trong 48 giờ và chuyển hồ sơ cho trưởng nhóm, kèm cả hai phiên bản mô tả. Hạn trả hàng của bạn là 17/11 23:59. Mình chưa quyết hoàn tiền hay từ chối.
@@ -88,7 +92,9 @@
   - Loại **hỏi lại một câu**: thông tin thiếu nằm ở dữ liệu (hai phiên bản mô tả, "lòng nồi" không được định nghĩa), người mua không trả lời được.
   - Loại **tự kết luận**: một phiên bản nào cũng cho một bên mất tiền (§2 #3).
   - Loại **chỉ trả lời kèm giới hạn rồi dừng**: người mua không còn bước tiếp, hạn 17/11 vẫn chạy.
-- **Loại lỗi:** lỗi ngữ cảnh. Nếu AI chọn một phiên bản làm chuẩn, hệ thống vẫn chạy đúng thiết kế ("so với mô tả") nhưng sai với tình huống. Vì vậy cách nói là "đơn này mô tả chưa rõ, mình không quyết được", không xin lỗi như một bug. Cách sửa là luật thiết kế, không chỉ đổi câu chữ.
+- **Loại lỗi:** ca này có hai loại lỗi, cách nói và cách sửa khác nhau.
+  - **Lỗi ngữ cảnh: mô tả gốc "6 lít" mơ hồ.** Hệ thống chạy đúng thiết kế, shop không nhất thiết gian lận, người mua không đọc nhầm, nhưng dữ liệu không đủ để phân xử. Cách nói: "đơn này mô tả chưa rõ, mình không quyết được", không đổ lỗi cho bên nào, không xin lỗi như một bug. Cách sửa: luật thiết kế (mô tả mơ hồ thì chuyển người), không chỉ đổi câu chữ.
+  - **Lỗi hệ thống: AI so với bản mô tả đã sửa.** Đây là hệ thống chọn sai nguồn dữ liệu. Cách nói nếu đã xảy ra: xin lỗi thẳng, "mình đã đối chiếu nhầm bản mô tả", rồi đối chiếu lại với bản lúc đặt. Cách sửa: sửa dữ liệu (`tra_cuu_don_hang` luôn trả cả hai bản và cờ "đã sửa sau khi bán"), không sửa câu chữ.
 - **HAX/PAIR:**
   - G10: câu "Mình chưa thể kết luận... Bạn gửi giúp mình ảnh" thay vì đoán.
   - G11 / Explainability: dòng "Dựa vào" và thẻ hai phiên bản mô tả.
@@ -96,6 +102,10 @@
 - **Lỗi sửa câu chữ không cứu được:** AI nói "mình đã so với mô tả của đơn" nhưng dùng bản đã sửa. Câu vẫn trông đúng. Chỉ thiết kế cứu được: `tra_cuu_don_hang` luôn trả cả hai bản và cờ "mô tả đã sửa sau khi bán", và quyết định hoàn hay từ chối không nằm ở AI (mức do §4 chốt).
 
 ### Kịch bản #7 · ảnh hai bên mâu thuẫn (đơn A2, hạn trả 15/11 23:59)
+
+> **Vấn đề:** người mua gửi ảnh tem size M, shop gửi ảnh đóng gói tem size L. AI không kiểm được ảnh nào thật.
+>
+> **AI làm:** nói rõ chưa quyết và không tự đóng khiếu nại, chuyển trưởng nhóm kèm hai bộ ảnh, trả lời "mai còn hạn" (đến 23:59 15/11), hướng dẫn người mua tự gửi yêu cầu trả hàng trước hạn.
 
 **AI nói (nguyên văn):**
 
@@ -111,7 +121,9 @@
   - Loại **hỏi lại một câu** ("ảnh nào đúng?"): hai bên đã gửi ảnh, hỏi thêm không thêm thông tin, và AI không kiểm được ảnh.
   - Loại **xin thêm bằng chứng rồi mới chuyển**: hạn chỉ còn hơn 2 ngày, vòng xin và chờ có thể ăn hết hạn. Trưởng nhóm xin thêm nếu cần.
   - Loại **"chưa đủ căn cứ thì đóng cho chắc"**: tiền về người bán, khó đảo (`tu_choi_khieu_nai`), và người mua có thể lỡ hạn.
-- **Loại lỗi:** lỗi ngữ cảnh. Luật "chưa đủ căn cứ thì không hoàn" chạy đúng nhưng sai với tình huống hai bên có bằng chứng ngang nhau. Cách nói: nhận mình không phân xử được, không đổ lỗi cho người mua hay người bán. Cách sửa: luật "bằng chứng mâu thuẫn thì AI không bao giờ tự đóng".
+- **Loại lỗi:** ca này có hai loại lỗi, cách nói và cách sửa khác nhau.
+  - **Lỗi ngữ cảnh: hai bên có bằng chứng ngang nhau.** Luật "chưa đủ căn cứ thì không hoàn" chạy đúng nhưng sai với tình huống này. Cách nói: nhận mình không phân xử được, mô tả hai ảnh như nhau, không dùng từ "ảnh giả" hay "bạn gửi nhầm". Cách sửa: luật "bằng chứng mâu thuẫn thì AI không bao giờ tự đóng".
+  - **Lỗi hệ thống: AI hiểu "chưa đủ căn cứ để hoàn" thành "đóng khiếu nại" và gọi `tu_choi_khieu_nai`.** Hệ thống gộp hai trạng thái khác nhau làm một. Cách nói nếu đã xảy ra: "Mình đã đóng khiếu nại của bạn khi chưa đủ căn cứ. Đó là lỗi của hệ thống, mình đã chuyển gấp cho trưởng nhóm xem lại." Cách sửa: tách trạng thái "Chưa đủ căn cứ · khiếu nại vẫn mở" khỏi "từ chối", và `tu_choi_khieu_nai` không thuộc quyền AI.
 - **HAX/PAIR:**
   - G10: câu "mình chưa quyết... không tự đóng khiếu nại".
   - Explainability + Trust: thẻ hai ảnh cạnh nhau và dòng "Dựa vào".
