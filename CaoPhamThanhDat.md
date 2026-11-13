@@ -1,16 +1,4 @@
-# Bài nộp LAB5 — T4 Thương mại điện tử · Nhóm [TÊN NHÓM]
-
-**Lớp:** L3B (13/11/2026) · **Bàn / zone:** ____ · **Track:** T4 — Trợ lý khiếu nại "hàng không đúng mô tả" (Trò chuyện với Shopee)
-
-| Họ và Tên | Mã Học Viên | Việc đã làm |
-|---|---|---|
-| [Thành viên 1] | [MSHV] | §1–§2: lát cắt, 12 kịch bản rủi ro, chọn 2 kịch bản đắt nhất; §6 tiêu chí Pass/Fail; kịch bản demo |
-| [Thành viên 2] | [MSHV] | §3: câu chữ AI nguyên văn cho ca A/B/C, phân loại lỗi, chọn nguyên tắc HAX/PAIR; trình bày phần "khi AI sai" |
-| [Thành viên 3] | [MSHV] | §4: bảng mức tự chủ, tách tool `soan_hoan_tien`; §5: dựng prototype HTML, ảnh đánh số; trình bày prototype |
-
-> Chính sách trong bài là **chính sách dựng** (khác Shopee thật, Shopee ghi 15 ngày): trả hàng trong **7 ngày** từ ngày nhận · người bán phản hồi trong **48 giờ** · nhân viên sàn xử lý trong **24 giờ** · xem xét lại trong 3 ngày. Đơn, shop, sản phẩm đều dựng.
-
----
+# Bài nộp LAB5 — T4 Thương mại điện tử · Nhóm PhiThuong
 
 ## §1. Lát cắt & phạm vi
 
