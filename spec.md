@@ -14,6 +14,12 @@
 - Lát cắt (chép từ track).
 - 3 việc tính năng KHÔNG làm, mỗi việc một câu vì sao.
 
+| Tính năng không làm | Tại sao? |
+|---|---|
+| Phạt hoặc khóa shop | Đây là hình thức nặng nhất, để đánh giá nên khóa shop hay không cần nhiều căn cứ và trao đổi giữa nền tảng, shop và người dùng. Ví dụ như, phải theo dõi lịch sử đơn của shop và tổng các feedback trước đó thì mới có minh chứng khóa shop |
+| Cung cấp số điện thoại hai bên | Số điện thoại, địa chỉ là dữ liệu cá nhân, đưa cho bên kia khi đang tranh chấp dễ dẫn tới quấy rối, đe doạ ngoài sàn, và lộ rồi thì không lấy lại được. Bộ tool của track cũng không có tool nào cho việc này. Hai bên vẫn trao đổi được qua kênh chat trong app, nơi sàn lưu lại được làm bằng chứng |
+| Kiểm tra xem hàng giả hay không | Xác định hàng giả cần giám định sản phẩm thật, giấy tờ nguồn gốc và xác nhận của chủ thương hiệu, AI chỉ nhìn ảnh và mô tả thì không đủ căn cứ. Kết luận sai thì người bán bị mang tiếng và có thể bị xử phạt oan, nên track yêu cầu chuyển ca nghi hàng giả cho bộ phận chuyên trách thay vì xử trong luồng khiếu nại "không đúng mô tả" |
+
 ## §2. Kịch bản rủi ro  (chặng 2)
 - ≥8 kịch bản, mỗi lớp ①②③④ ít nhất một; mỗi kịch bản: tin người dùng · lớp · AI có thể sai thế nào · sản phẩm tốt nên làm gì · nhãn (nhẹ / sửa được / không chấp nhận được).
 - Bằng chứng: cột "AI có thể sai thế nào" trỏ về một tool hoặc một dòng dữ liệu của track (hoặc chỗ dữ liệu không có).
